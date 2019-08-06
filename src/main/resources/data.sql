@@ -1,0 +1,1 @@
+INSERT INTO URLDATA (id, longurl) VALUES ('Xfh3fs0tHj4', ' https://www.ebay.com/itm/LEMFO-W8-Smart-Watch-Men-Women-Heart-Rate-Blood-Oxygen-Pressure-Fitness-Bracelet/264379674226?_trkparms=pageci%3Af9064b67-b795-11e9-8865-74dbd1803b62%7Cparentrq%3A62675c0c16c0a4b77cb2669fffdf42db%7Ciid%3A1');

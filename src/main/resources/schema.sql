@@ -1,0 +1,5 @@
+CREATE TABLE URLDATA
+(
+    id NVARCHAR(20) NOT NULL,
+    longurl NVARCHAR(max) NOT NULL,
+);
