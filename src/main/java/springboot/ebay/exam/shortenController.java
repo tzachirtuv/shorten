@@ -1,29 +1,34 @@
 package springboot.ebay.exam;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import springboot.ebay.exam.model.shortenUrl;
 import springboot.ebay.exam.service.ShortenService;
-
+import springboot.ebay.exam.model.UrlData;
 
 
 @RequestMapping("/api/v1")
 @RestController
-public class shortenController{
+public class ShortenController {
 
-    @Autowired
-    private ShortenService shortenService;
+   @Autowired
+   ShortenService shortenService;
 
-    @RequestMapping(value = "/shorten", method = RequestMethod.POST)
-    shortenUrl creatShortenUrl() {
-      Optional<shortenUrl> tt = shortenService.findById("Xfh3fs0tHj4");
-        return tt.get();
-      //  return "SUCCESS";
-    }
+   @RequestMapping(value = "/shorten", method = RequestMethod.POST)
+   public UrlData encodeController(@RequestBody UrlData url) {
+      UrlData response = shortenService.createShortenUrl(url.getUrl());
+
+      return response;
+   }
+
+
+   @RequestMapping(value = "/go/{id}", method = RequestMethod.GET)
+   public UrlData decodeController(@PathVariable String id) {
+      UrlData response = shortenService.GetLongUrl(id);
+      
+      return response;
+   }
 }

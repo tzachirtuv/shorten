@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "URLDATA")
-public class shortenUrl{
+public class ShortenUrl{
 
 
     @Column(name = "id")

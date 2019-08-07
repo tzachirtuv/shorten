@@ -1,8 +1,10 @@
 package springboot.ebay.exam.service;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import springboot.ebay.exam.model.shortenUrl;
+import springboot.ebay.exam.model.UrlData;
 
-public interface ShortenService extends JpaRepository<shortenUrl, String>{
+public interface ShortenService {
+    
+    UrlData createShortenUrl(String longUrl);
+    UrlData GetLongUrl(String shortenUrl); 
     
 }
