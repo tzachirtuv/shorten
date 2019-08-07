@@ -2,16 +2,24 @@ package springboot.ebay.exam;
 
 import static org.junit.Assert.assertEquals;
 
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import springboot.ebay.exam.util.LRUCache;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class LruTest {
+
+    @LocalServerPort
+    private int port ;
+
 
     @Test
     public void baseTest() {

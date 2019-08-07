@@ -3,23 +3,28 @@ package springboot.ebay.exam;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import springboot.ebay.exam.model.UrlDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.servlet.ModelAndView;
 
-import springboot.ebay.exam.model.UrlDto;
-
-
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class ExamApplicationTests {
 
 	@Autowired
 	ShortenController controller;
+
+	@LocalServerPort
+    private int port ;
 
 	@Test
 	public void baseTest() {
