@@ -5,9 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "URLDATA")
-public class ShortenUrl{
+public class SchemaEntity{
 
 
     @Column(name = "id")

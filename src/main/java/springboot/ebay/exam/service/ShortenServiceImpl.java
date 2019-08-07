@@ -5,37 +5,41 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import springboot.ebay.exam.model.ShortenUrl;
-import springboot.ebay.exam.model.UrlData;
+import springboot.ebay.exam.converter.UrlConverter;
+import springboot.ebay.exam.model.SchemaEntity;
+import springboot.ebay.exam.model.UrlDto;
 import springboot.ebay.exam.repository.ShortenRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ShortenServiceImpl implements ShortenService{
 
-    String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
      
 
     @Autowired
-    ShortenRepository shortenRepository;
+    private ShortenRepository shortenRepository;
+    
 
     @Override
-    public UrlData createShortenUrl(String longUrl) {
+    public UrlDto createShortenUrl(String longUrl) {
         String shorten = encode();
-        ShortenUrl newData = new ShortenUrl();
+        
+        SchemaEntity newData = new SchemaEntity();
         newData.setId(shorten);
         newData.setLongUrl(longUrl);
         shortenRepository.save(newData);
-        UrlData data = new UrlData();
-        data.setId(shorten);
+
+        UrlDto data = UrlConverter.entityToDto(newData);
+        //data.setId(shorten);
         
         return data;
     }
 
     @Override
-    public UrlData GetLongUrl(String shortenUrl) {
-        Optional<ShortenUrl> data = shortenRepository.findById(shortenUrl);
-        UrlData res = new UrlData();
+    public UrlDto GetLongUrl(String shortenUrl) {
+        Optional<SchemaEntity> data = shortenRepository.findById(shortenUrl);
+        UrlDto res = new UrlDto();
         data.ifPresent( d -> {
              res.setUrl(d.getLongUrl());
             
@@ -45,7 +49,7 @@ public class ShortenServiceImpl implements ShortenService{
 
     private String encode() {
         String shorten = generateShorten();
-        Optional<ShortenUrl> current = shortenRepository.findById(shorten);
+        Optional<SchemaEntity> current = shortenRepository.findById(shorten);
          while (current.isPresent()) {
              shorten = generateShorten();
              current = shortenRepository.findById(shorten);;

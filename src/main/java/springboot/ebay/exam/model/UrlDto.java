@@ -5,19 +5,19 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class UrlData {
+public class UrlDto {
     
     String url;
     String id;
 
 
     @JsonCreator
-    public UrlData(@JsonProperty("url") String url,@JsonProperty("id") String id){
+    public UrlDto(@JsonProperty("url") String url,@JsonProperty("id") String id){
         this.url = url;
         this.id = id;
     }
 
-    public UrlData(){
+    public UrlDto(){
 
     }
 
