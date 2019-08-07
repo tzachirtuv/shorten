@@ -23,4 +23,4 @@ simple shorten url with h2 DB to store the url and keys
 - you can use simple html to generate the shorten url: http://localhost:8080
     page will popup the generate url link
 
-# application support LRU (default configuration is 2 keys)
+- application support LRU (default configuration is 2 keys)
