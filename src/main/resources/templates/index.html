@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script type="text/javascript">  
+function getShorten(){  
+    var number=document.getElementById("url").value;  
+    let xhr = new XMLHttpRequest();
+
+    let json = JSON.stringify({
+    url: number        });
+
+
+  xhr.open("POST", '/api/v1/shorten')
+  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  xhr.onload = function(e) {
+  if (this.status == 200) {
+    console.log('response', this.response); // JSON response  
+    alert(this.response);
+  }
+};
+  xhr.send(json);
+  
+}  
+</script>  
+<form>  
+Enter URL:<input type="text" id="url" name="url"/><br/>  
+<input type="button" value="shorten" onclick="getShorten()"/>  
+</form> 
+</body>
+</html>

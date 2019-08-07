@@ -31,13 +31,11 @@ public class ShortenController {
          UrlDto response = shortenService.createShortenUrl(url.getUrl());
 
          return response;
-      }
-      catch (Exception e) {
+      } catch (Exception e) {
          throw new Exception("Invalid url", e);
       }
 
    }
-
 
    @RequestMapping(value = "/go/{id}", method = RequestMethod.GET)
    public ModelAndView get(@PathVariable("id") String id) throws Exception {

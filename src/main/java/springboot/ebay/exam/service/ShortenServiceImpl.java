@@ -50,6 +50,7 @@ public class ShortenServiceImpl implements ShortenService {
             Optional<SchemaEntity> data = shortenRepository.findById(shortenUrl);
 
             data.ifPresent(d -> {
+                lru.put(shortenUrl, d.getLongUrl());
                 result.setUrl(d.getLongUrl());
 
             });
