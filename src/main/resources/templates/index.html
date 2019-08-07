@@ -14,8 +14,10 @@ function getShorten(){
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   xhr.onload = function(e) {
   if (this.status == 200) {
-    console.log('response', this.response); // JSON response  
+    
     alert(this.response);
+  }else{
+    alert("error, status: " +this.status );
   }
 };
   xhr.send(json);
