@@ -8,7 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import springboot.ebay.exam.model.UrlDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,6 +38,15 @@ public class HttpRequestTest {
         assertThat(res.toString().contains("https://www.google.com/"));
     }
 
+
+    @Test
+    public void getShortenUrl() throws Exception {
+        UrlDto dto = new UrlDto("https://www.google.co.il/", null);
+        HttpEntity<UrlDto> request = new HttpEntity<UrlDto>(dto);
+        String path ="http://localhost:" + port + "/" + encodePath;
+        ResponseEntity<UrlDto> res = this.restTemplate.postForEntity(path,request,UrlDto.class);
+        assertThat(res.getBody().getUrl().length() == 6);
+    }
 
 
 }
